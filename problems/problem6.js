@@ -1,7 +1,4 @@
-export function problem(){
-  let gamma = '';
-  let epsilon = '';
-
+const getWeights = (numbers) => {
   const weights = new Array(numbers[0].length).fill(0)
   const len = numbers.length;
 
@@ -11,12 +8,23 @@ export function problem(){
     })
   })
 
-  weights.forEach(weight => {
-    gamma += weight >= .5 ? '1' : '0'
-    epsilon += weight >= .5 ? '0' : '1'
-  })
+  return weights;
+}
 
-  console.log(parseInt(gamma, 2) * parseInt(epsilon, 2))
+const getGamma = (weights) => weights.reduce((gamma, weight) => gamma += weight >= .5 ? '1' : '0', '')
+const getEpsilon = (weights) => weights.reduce((eps, weight) => eps += weight < .5 ? '1' : '0', '')
+
+export function problem(){
+  let og = numbers;
+  let co2 = numbers; 
+
+  const digits = numbers[0].length;
+  for (let i = 0; i < digits; i++){
+    if (og.length > 1) og = og.filter(v => v[i] === getGamma(getWeights(og))[i])
+    if (co2.length > 1) co2 = co2.filter(v => v[i] === getEpsilon(getWeights(co2))[i])
+  }
+
+  console.log(parseInt(og[0], 2) * parseInt(co2[0], 2))
 }
 
 const numbers = [
