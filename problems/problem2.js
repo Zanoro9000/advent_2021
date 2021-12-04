@@ -1,5 +1,8 @@
 export function problem(){
-  const windows = depths.map((depth, i, arr) => i < arr.length - 2 ? depth + arr[i+1] + arr[i+2] : 0)
+  const windows = depths.map((depth, i, arr) => 
+    i < arr.length - 2 ? 
+      depth + arr[i+1] + arr[i+2] 
+      : 0)
 
   const count = windows.reduce((count, depth, i, arr) => 
     i > 0 ? 
