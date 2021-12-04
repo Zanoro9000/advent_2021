@@ -1,3 +1,3 @@
-import { problem } from "./problems/problem4.js";
+import { problem } from "./problems/problem5.js";
 
 problem();
