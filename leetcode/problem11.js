@@ -27,6 +27,7 @@ function ListNode(val, next) {
   this.next = (next===undefined ? null : next)
 }
 
+// loops are faster than recursion
 var insertionSortList = function(head) {
   let out = new ListNode(head.val)
   let mainCursor = head.next;
