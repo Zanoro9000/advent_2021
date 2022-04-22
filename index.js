@@ -1,4 +1,4 @@
-import { problem } from "./leetcode/problem12.js";
+import { problem } from "./leetcode/problem13.js";
 
 //https://adventofcode.com/2021/
 problem();
