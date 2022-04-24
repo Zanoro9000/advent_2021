@@ -41,9 +41,9 @@ UndergroundSystem.prototype.checkOut = function(id, stationName, t) {
   this.activeCustomers.delete(id);
   if (!this.stations.has(stationName)) this.stations.set(stationName, {})
   const station = this.stations.get(stationName);
-  if (!station[customer.stationName]) station[customer.stationName] = { time: [], count: 0 }
+  if (!station[customer.stationName]) station[customer.stationName] = { time: 0, count: 0 }
   const prevStation = station[customer.stationName];
-  prevStation.time = ((prevStation.time * prevStation.count + (t - customer.in)) / (prevStation.count + 1));
+  prevStation.time +=  t - customer.in;
   prevStation.count += 1;
 };
 
@@ -53,7 +53,8 @@ UndergroundSystem.prototype.checkOut = function(id, stationName, t) {
  * @return {number}
  */
 UndergroundSystem.prototype.getAverageTime = function(startStation, endStation) {
-  return this.stations.get(endStation)[startStation].time;
+  const { time, count } = this.stations.get(endStation)[startStation]
+  return time / count;
 };
 
 /** 
